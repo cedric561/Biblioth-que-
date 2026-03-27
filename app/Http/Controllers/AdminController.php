@@ -11,7 +11,9 @@ class AdminController extends Controller
 {
 
     public function dashboard(){
-         return view('admin.dashboard');
+        $nbProfesseurs = User::where('role', 'professeur')->count();
+        $nbEtudiants = User::where('role', 'etudiant')->count();
+        return view('admin.dashboard', compact('nbProfesseurs', 'nbEtudiants'));
     }
 
 
