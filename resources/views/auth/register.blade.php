@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-4">
-        <h2>Inscription</h2>
+        <h2>Enregistrer un rôle</h2>
         <form method="POST" action="{{ route('register') }}">
             @csrf
             <div class="mb-3">

@@ -24,7 +24,7 @@ class User extends Authenticatable
         'password',
         'role'
     ];
-     public function isAdmin() { return $this->role === 'admin'; }
+    public function isAdmin() { return $this->role === 'admin'; }
     public function isProfesseur() { return $this->role === 'professeur'; }
     public function isEtudiant() { return $this->role === 'etudiant'; }
 

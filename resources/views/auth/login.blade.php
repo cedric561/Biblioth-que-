@@ -16,9 +16,6 @@
                 <input type="password" name="password" placeholder="Mot de passe" class="form-control" required>
             </div>
             <button type="submit" class="btn btn-primary w-100">Se connecter</button>
-            <div class="mt-2">
-                Pas de compte ? <a href="{{ route('register') }}">S'inscrire</a>
-            </div>
         </form>
     </div>
 </div>
