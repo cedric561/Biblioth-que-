@@ -31,7 +31,7 @@ public function storeProfesseur(Request $request){
         'password'=>Hash::make($request->password),
         'role'=>'professeur'
     ]);
-    return redirect()->route('admin.professeurs');
+    return redirect()->route('admin.dashboard');
 }
 
 
@@ -50,7 +50,7 @@ public function storeEtudiant(Request $request){
         'password'=>Hash::make($request->password),
         'role'=>'etudiant'
     ]);
-    return redirect()->route('admin.etudiants');
+    return redirect()->route('admin.dashboard');
 }
 
         // Notes
