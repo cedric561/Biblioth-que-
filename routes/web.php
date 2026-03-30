@@ -9,14 +9,14 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Auth
+
 Route::get('/login',[AuthController::class,'showLogin'])->name('login');
 Route::post('/login',[AuthController::class,'login']);
 Route::get('/register',[AuthController::class,'showRegister'])->name('register');
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
-// Admin
+
 Route::middleware(['auth','role:admin'])->prefix('admin')->group(function(){
     Route::get('/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
     Route::get('/etudiants',[AdminController::class,'etudiants'])->name('admin.etudiants');
@@ -30,13 +30,15 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function(){
     Route::post('/store-note',[AdminController::class,'storeNote'])->name('admin.storeNote');
 });
 
-// Professeur
+
 Route::middleware(['auth','role:professeur'])->prefix('professeur')->group(function(){
     Route::get('/dashboard',[ProfesseurController::class,'dashboard'])->name('professeur.dashboard');
     Route::get('/notes',[ProfesseurController::class,'notes'])->name('professeur.notes');
+    Route::delete('/notes/{id}',[ProfesseurController::class,'deletenotes'])->name('professeur.delete');
+
 });
 
-// Étudiant
+
 Route::middleware(['auth','role:etudiant'])->prefix('etudiant')->group(function(){
     Route::get('/dashboard',[EtudiantController::class,'dashboard'])->name('etudiant.dashboard');
     Route::get('/notes',[EtudiantController::class,'notes'])->name('etudiant.notes');

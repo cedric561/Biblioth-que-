@@ -1,26 +1,54 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Liste des professeurs</h2>
+<div class="container py-4">
 
-<a href="{{ route('admin.createProfesseur') }}" class="btn btn-primary mb-3">Ajouter un professeur</a>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary">
+            <i class="bi bi-person-badge me-2"></i> Liste des professeurs
+        </h2>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Nom</th>
-            <th>Email</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($professeurs as $prof)
-        <tr>
-            <td>{{ $prof->id }}</td>
-            <td>{{ $prof->name }}</td>
-            <td>{{ $prof->email }}</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+        <a href="{{ route('admin.createProfesseur') }}" class="btn btn-success d-flex align-items-center">
+            <i class="bi bi-plus-circle me-2"></i> Ajouter un professeur
+        </a>
+    </div>
+
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover table-bordered align-middle mb-0">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($professeurs as $prof)
+                <tr>
+                    <td class="text-center">{{ $prof->id }}</td>
+                    <td>{{ $prof->name }}</td>
+                    <td>{{ $prof->email }}</td>
+                    <td class="text-center">
+                        <a href="" class="btn btn-sm btn-primary me-1">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <form action="" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ce professeur ?')">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 @endsection

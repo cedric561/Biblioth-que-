@@ -17,63 +17,64 @@ class AdminController extends Controller
     }
 
 
-public function professeurs(){
-     $professeurs = User::where('role','professeur')->get();
-      return view('admin.professeurs', compact('professeurs'));
-}
-public function createProfesseur(){
+    public function professeurs(){
+        $professeurs = User::where('role','professeur')->get();
+        return view('admin.professeurs', compact('professeurs'));
+    }
+    public function createProfesseur(){
      return view('admin.createProfesseur');
- }
-public function storeProfesseur(Request $request){
-    User::create([
-        'name'=>$request->name,
-        'email'=>$request->email,
-        'password'=>Hash::make($request->password),
-        'role'=>'professeur'
-    ]);
-    return redirect()->route('admin.dashboard');
-}
+    }
+    public function storeProfesseur(Request $request){
+                User::create([
+                    'name'=>$request->name,
+                    'email'=>$request->email,
+                    'password'=>Hash::make($request->password),
+                    'role'=>'professeur'
+                ]);
+                return redirect()->route('admin.dashboard')->with('professeur','Professeur ajouté avec succès!');
+    }
 
 
-public function etudiants(){
+    public function etudiants(){
      $etudiants = User::where('role','etudiant')->get();
       return view('admin.etudiants', compact('etudiants'));
- }
-public function createEtudiant(){
-     return view('admin.createEtudiant');
+    }
+    public function createEtudiant(){
+        return view('admin.createEtudiant');
 
-}
-public function storeEtudiant(Request $request){
-    User::create([
-        'name'=>$request->name,
-        'email'=>$request->email,
-        'password'=>Hash::make($request->password),
-        'role'=>'etudiant'
-    ]);
-    return redirect()->route('admin.dashboard');
-}
+        }
+    public function storeEtudiant(Request $request){
+        User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'role'=>'etudiant'
+        ]);
+        return redirect()->route('admin.dashboard')->with('etudiant','Etudiant ajouter avec succès!');
+    }
 
-        // Notes
-public function notes()
-{
-    $notes = Note::with(['etudiant','professeur'])->get();
-    return view('admin.notes', compact('notes'));
-}
 
-public function createNote(){
-    $etudiants = User::where('role','etudiant')->get();
-    $professeurs = User::where('role','professeur')->get();
-    return view('admin.createNote', compact('etudiants','professeurs'));
-}
+    public function notes()
+    {
+        $notes = Note::with(['etudiant','professeur'])->get();
+        return view('admin.notes', compact('notes'));
+    }
 
-public function storeNote(Request $request){
-    Note::create([
-        'etudiant_id' => $request->etudiant_id,
-        'professeur_id' => $request->professeur_id,
-        'matiere' => $request->matiere,
-        'note' => $request->note,
-    ]);
+    public function createNote(){
+        $etudiants = User::where('role','etudiant')->get();
+        $professeurs = User::where('role','professeur')->get();
+        return view('admin.createNote', compact('etudiants','professeurs'));
+    }
 
-    return redirect()->route('admin.notes');
-}
+    public function storeNote(Request $request){
+        Note::create([
+            'etudiant_id' => $request->etudiant_id,
+            'matiere' => $request->matiere,
+            'note' => $request->note,
+            'professeur_id' => auth()->user()->id,
+        ]);
+
+        return redirect()->route('admin.dashboard')
+            ->with('succès','Note ajouter avec succès!');
+    }
 }

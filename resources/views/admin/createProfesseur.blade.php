@@ -19,5 +19,13 @@
     </div>
 
     <button type="submit" class="btn btn-success">Ajouter</button>
+    <a href="{{ route('admin.professeurs') }}" class="btn btn-secondary">
+         <i class="bi bi-arrow-left me-2"></i> Retour
+    </a>
+
+
 </form>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 @endsection

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\User;
 use App\Models\Note;
 
@@ -12,10 +14,10 @@ class EtudiantController extends Controller
     {
         return view('etudiant.dashboard');
     }
-   public function notes()
-{
-    $user = auth()->user();
-    $notes = $user->notes;  
-    return view('etudiant.notes', compact('notes'));
-}
+   public function notes(){
+        $notes = Note::with(['etudiant','professeur'])
+            ->where('etudiant_id',Auth::id())
+            ->get();
+        return view('etudiant.notes', compact('notes'));
+    }
 }

@@ -1,30 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Liste des notes</h2>
+<div style=" display:flex;">
+    <h1>Liste de tes notes</h1>
+    <h1><span style=" color:rgb(255, 150, 21); display:flex;  margin-left:15px;"> {{ Auth::user()->name ?? 'N/A' }}</span></h1>
 
-<a href="{{ route('admin.createNote') }}" class="btn btn-primary mb-3">Ajouter une note</a>
+</div>
+
 
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>#</th>
-            <th>Étudiant</th>
             <th>Professeur</th>
             <th>Matière</th>
             <th>Note</th>
         </tr>
     </thead>
     <tbody>
+
         @foreach($notes as $note)
         <tr>
-            <td>{{ $note->id }}</td>
-            <td>{{ $note->etudiant->name ?? 'N/A' }}</td>
+            <td>{{ $loop->iteration }}</td>
             <td>{{ $note->professeur->name ?? 'N/A' }}</td>
             <td>{{ $note->matiere }}</td>
             <td>{{ $note->note }}</td>
         </tr>
+
         @endforeach
+
     </tbody>
 </table>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 @endsection

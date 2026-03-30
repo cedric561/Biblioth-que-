@@ -75,14 +75,42 @@
 <div class="sidebar">
     <h4>Admin Panel</h4>
 
-    <a href="{{ route('admin.dashboard') }}">🏠 Dashboard</a>
-    <a href="{{ route('admin.etudiants') }}">🎓 Gérer Étudiants</a>
-    <a href="{{ route('admin.professeurs') }}">👨‍🏫 Gérer Professeurs</a>
-    <a href="{{ route('admin.notes') }}">📝 Gérer Notes</a>
-    <a href="{{ route('register') }}">➕ Ajouter un rôle</a>
+    <a href="{{ route('admin.dashboard') }}"><i style="margin-right:15px;" class="bi bi-house"></i> Dashboard</a>
+    <a href="{{ route('admin.etudiants') }}"><i style="margin-right:15px;" class="bi bi-mortarboard"></i> Gérer Étudiants</a>
+    <a href="{{ route('admin.professeurs') }}"><i style="margin-right:15px;" class="bi bi-person-badge"></i>Gérer Professeurs</a>
+    <a href="{{ route('admin.notes') }}"><i style="margin-right:15px;" class="bi bi-pencil"></i>Gérer Notes</a>
+    <a href="{{ route('register') }}"><i style="margin-right:15px;" class="bi bi-plus"></i>Ajouter un rôle</a>
 </div>
 
 <div class="main-content" style="margin-left: 260px; padding: 20px;">
+
+   @if(session('succès'))
+        <div id="success-message" class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('succès') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if(session('Role'))
+        <div id="success-message" class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('Role') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+     @if(session('etudiant'))
+        <div id="success-message" class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('etudiant') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+     @if(session('professeur'))
+        <div id="success-message" class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('professeur') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <div style="display:flex" >
         <h1 > Bienvenue,</h1> <h1 class="mb-4" style="color: #c9509d"> <strong>{{ Auth::user()->name }}</strong> </h1>
@@ -139,7 +167,6 @@
     }
 </style>
 
-<!-- Pour les icônes, ajoute Bootstrap Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @endsection

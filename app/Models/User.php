@@ -29,8 +29,9 @@ class User extends Authenticatable
     public function isEtudiant() { return $this->role === 'etudiant'; }
 
     public function notes() {
-        return $this->hasMany(Note::class, 'etudiant_id');
+        return $this->hasMany(Note::class, 'professeur_id');
     }
+
 
     /**
      * The attributes that should be hidden for serialization.

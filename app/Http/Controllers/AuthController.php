@@ -8,18 +8,17 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // Afficher le formulaire de connexion
+
     public function showLogin() {
         return view('auth.login');
     }
 
-    // Traiter la connexion
+
     public function login(Request $request) {
         $db = $request->only('email','password');
 
         if(Auth::attempt($db)) {
             $request->session()->regenerate();
-
             $role = Auth::user()->role;
             if($role == 'admin') return redirect()->route('admin.dashboard');
             if($role == 'professeur') return redirect()->route('professeur.dashboard');
@@ -29,12 +28,11 @@ class AuthController extends Controller
         return back()->with('error','Email ou mot de passe incorrect');
     }
 
-    // Afficher le formulaire d'inscription
+
     public function showRegister() {
         return view('auth.register');
     }
 
-    // Traiter l'inscription
     public function register(Request $request) {
         $request->validate([
             'name'=>'required|string|max:255',
@@ -56,7 +54,7 @@ class AuthController extends Controller
         if($user->role=='etudiant') return redirect()->route('etudiant.dashboard');
     }
 
-    // Déconnexion
+
     public function logout(Request $request) {
         Auth::logout();
         $request->session()->invalidate();
