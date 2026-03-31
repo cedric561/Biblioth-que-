@@ -34,13 +34,11 @@
         }
     </style>
 </head>
-
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#">📘 Gestion Notes</a>
-
+        <i class="bi bi-mortarboard-fill fs-2" style="color: yellow;"></i><b style="font-size: 25px; color:#ffffff; margin-left:10px;"> Gest_</b><span style="color: yellow; font-size:21px;">School</span>
         <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -75,5 +73,6 @@
 <div>
     @yield('content')
 </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </body>
 </html>

@@ -3,10 +3,10 @@
 @section('content')
 
 <style>
-    /* Sidebar fixe */
+
     .sidebar {
         position: fixed;
-        top: 70px; /* Décalage pour navbar */
+        top: 55px;
         left: 0;
         width: 250px;
         height: 100%;
@@ -34,16 +34,14 @@
         color: #fff;
     }
 
-    /* Contenu principal */
     .main-content {
-        margin-left: 250px; /* Décalage pour sidebar */
+        margin-left: 250px;
         padding: 40px;
-        margin-top: 70px; /* Décalage pour navbar */
+        margin-top: 70px;
         min-height: 100vh;
         background-color: #f4f6f9;
     }
 
-    /* Table stylée */
     .table-responsive {
         border-radius: 12px;
         overflow: hidden;
@@ -123,7 +121,6 @@
                     <th scope="col">#</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -132,21 +129,7 @@
                     <td class="text-center">{{ $etudiant->id }}</td>
                     <td>{{ $etudiant->name }}</td>
                     <td>{{ $etudiant->email }}</td>
-                    <td class="text-center">
-                        <!-- Modifier étudiant -->
-                        <a href="{{ route('admin.editEtudiant', $etudiant->id) }}" class="btn btn-sm btn-primary me-1">
-                            <i class="bi bi-pencil-square"></i> Modifier
-                        </a>
 
-                        <!-- Supprimer étudiant -->
-                        <form action="{{ route('admin.deleteEtudiant', $etudiant->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cet étudiant ?')">
-                                <i class="bi bi-trash-fill"></i> Supprimer
-                            </button>
-                        </form>
-                    </td>
                 </tr>
                 @empty
                 <tr>
