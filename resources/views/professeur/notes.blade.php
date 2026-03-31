@@ -1,77 +1,162 @@
 @extends('layouts.app')
+
 @section('content')
-@if($notes->isEmpty())
-    <div class="alert alert-warning text-center mt-4" role="alert">
-        Aucune note trouvée
-    </div>
-@else
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <div class="container mt-5">
-        <div class="card shadow-lg border-0">
-            <div class="card-header bg-dark text-white text-center">
-                <h4 class="mb-0">Notes des Étudiants</h4>
-            </div>
+<style>
+    .sidebar {
+        position: fixed;
+        top: 55px;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        background-color: #212529;
+        padding: 20px;
+        color: #fff;
+    }
 
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-hover table-striped align-middle mb-0">
+    .sidebar h4 {
+        margin-bottom: 2rem;
+        font-weight: bold;
+    }
 
-                        <thead class="table-dark text-center">
-                            <tr>
-                                <th>#</th>
-                                <th>Nom de l'Étudiant</th>
-                                <th>Matière</th>
-                                <th>Note</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
+    .sidebar .nav-link {
+        color: #fff;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+    }
 
-                        <tbody class="text-center">
+    .sidebar .nav-link:hover {
+        background-color: #0d6efd;
+        border-radius: 6px;
+        color: #fff;
+    }
 
-                            @php
-                                $counter = 1;
-                            @endphp
+    .sidebar .nav-link i {
+        margin-right: 10px;
+        font-size: 1.1rem;
+    }
 
-                            @foreach($notes as $note)
-                                <tr>
-                                    <td>{{ $counter++ }}</td>
-                                    <td class="fw-semibold text-primary">
-                                        {{ $note->etudiant->name ?? 'Inconnu' }}
-                                    </td>
-                                    <td>{{ $note->matiere }}</td>
-                                    <td>
-                                        <span class="badge {{ $note->note >= 10 ? 'bg-success' : 'bg-danger' }} px-3 py-2">
-                                            {{ $note->note }}
-                                        </span>
-                                    </td>
-                                    <td>
+    /* Main content */
+    .main-content {
+        margin-left: 250px; /* Décalage pour sidebar */
+        padding: 40px;
+        margin-top: 70px; /* Décalage pour navbar */
+        min-height: 100vh;
+        background-color: #f4f6f9;
+    }
 
-                                        <a href="" class="text-warning me-2">
-                                            <i class="bi bi-pencil-fill"></i>
-                                        </a>
+    .card-custom {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    /* Table styling */
+    .table thead {
+        background-color: #0d6efd;
+        color: #fff;
+    }
+
+    .table tbody tr:hover {
+        background-color: #e9f5ff;
+    }
+
+    .btn-sm {
+        font-size: 0.85rem;
+    }
+</style>
+
+<div class="sidebar">
+    <h4>Prof Panel</h4>
+    <ul class="nav flex-column">
+        <li class="nav-item mb-2">
+            <a href="{{ route('professeur.dashboard') }}" class="nav-link">
+                <i class="bi bi-speedometer2"></i> Dashboard
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('professeur.notes') }}" class="nav-link">
+                <i class="bi bi-journal-text"></i> Mes Notes
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('professeur.createNote') }}" class="nav-link">
+                <i class="bi bi-plus-circle"></i> Ajouter Note
+            </a>
+        </li>
+    </ul>
+</div>
 
 
-                                        <form action="{{ route('professeur.delete', $note->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Voulez-vous vraiment supprimer cette note ?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-link p-0 m-0 text-danger">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+<div class="main-content">
 
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-1">Mes Notes</h2>
+            <small class="text-muted">Gérez toutes vos notes de manière professionnelle</small>
         </div>
+
+
     </div>
-@endif
+
+    <div class="card card-custom p-4">
+
+        @if($notes->isEmpty())
+            <div class="text-center py-5">
+                <h5 class="text-muted">
+                    <i class="bi bi-file-earmark-text"></i> Aucune note trouvée
+                </h5>
+            </div>
+        @else
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th><i class="bi bi-person"></i> Étudiant</th>
+                            <th><i class="bi bi-book"></i> Matière</th>
+                            <th><i class="bi bi-123"></i> Note</th>
+                            <th class="text-center"><i class="bi bi-gear"></i> Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($notes as $note)
+                        <tr>
+                            <td class="fw-semibold">{{ $note->etudiant->name }}</td>
+                            <td>{{ $note->matiere }}</td>
+                            <td>
+                                <span class="badge bg-primary fs-6">
+                                    {{ $note->note }}
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <a href="{{ route('professeur.editNote', $note->id) }}"
+                                   class="btn btn-warning btn-sm me-2">
+                                    <i class="bi bi-pencil-square"></i> Modifier
+                                </a>
+                                <form action="{{ route('professeur.deleteNote', $note->id) }}"
+                                      method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Supprimer cette note ?')">
+                                        <i class="bi bi-trash"></i> Supprimer
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
+
+    </div>
+
+</div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 @endsection

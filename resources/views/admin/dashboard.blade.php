@@ -3,170 +3,123 @@
 @section('content')
 
 <style>
-    body {
-        background-color: #f4f6f9;
-    }
 
     .sidebar {
-        height: 100vh;
-        background: #1e293b;
-        color: white;
         position: fixed;
+        top: 55px;
+        left: 0;
         width: 250px;
-        padding-top: 20px;
-        margin-left: -75px;
-        margin-top: -32px;
+        height: 100%;
+        background-color: #212529;
+        padding: 20px;
+        color: #fff;
     }
 
     .sidebar h4 {
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 2rem;
+        font-weight: bold;
     }
 
-    .sidebar a {
-        display: block;
-        color: #cbd5e1;
-        padding: 12px 20px;
-        text-decoration: none;
+    .sidebar .nav-link {
+        color: #fff;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
         transition: 0.3s;
     }
 
-    .sidebar a:hover {
-        background: #334155;
-        color: white;
-        padding-left: 25px;
+    .sidebar .nav-link:hover {
+        background-color: #0d6efd;
+        border-radius: 6px;
+        color: #fff;
     }
 
+    .sidebar .nav-link i {
+        margin-right: 10px;
+        font-size: 1.2rem;
+    }
+
+    /* Main content */
     .main-content {
-        margin-left: 260px;
-        padding: 20px;
-        margin-top: 10px;
+        margin-left: 250px; /* Espace pour sidebar */
+        padding: 40px;
+        margin-top: 70px; /* Décalage pour navbar */
+        min-height: 100vh;
+        background-color: #f4f6f9;
     }
 
     .card-custom {
         border: none;
-        border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         padding: 20px;
     }
 
-    .stat-card {
-        border-radius: 15px;
-        color: white;
-        padding: 20px;
-    }
-
-    .bg-blue {
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
-    }
-
-    .bg-green {
-        background: linear-gradient(135deg, #22c55e, #16a34a);
-    }
-
-    .stat-card h2 {
-        font-size: 40px;
+    .card-custom h2 {
         font-weight: bold;
     }
 
+    .btn i {
+        margin-right: 5px;
+    }
 </style>
-
 
 <div class="sidebar">
     <h4>Admin Panel</h4>
-
-    <a href="{{ route('admin.dashboard') }}"><i style="margin-right:15px;" class="bi bi-house"></i> Dashboard</a>
-    <a href="{{ route('admin.etudiants') }}"><i style="margin-right:15px;" class="bi bi-mortarboard"></i> Gérer Étudiants</a>
-    <a href="{{ route('admin.professeurs') }}"><i style="margin-right:15px;" class="bi bi-person-badge"></i>Gérer Professeurs</a>
-    <a href="{{ route('admin.notes') }}"><i style="margin-right:15px;" class="bi bi-pencil"></i>Gérer Notes</a>
-    <a href="{{ route('register') }}"><i style="margin-right:15px;" class="bi bi-plus"></i>Ajouter un rôle</a>
+    <ul class="nav flex-column">
+        <li class="nav-item mb-2">
+            <a href="#" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('admin.professeurs') }}" class="nav-link"><i class="bi bi-person-badge"></i> Professeurs</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('admin.etudiants') }}" class="nav-link"><i class="bi bi-mortarboard"></i> Étudiants</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('admin.notes') }}" class="nav-link"><i class="bi bi-journal-text"></i> Notes</a>
+        </li>
+        <li class="nav-item mt-4">
+            <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle"></i> Ajouter un rôle</a>
+        </li>
+    </ul>
 </div>
 
-<div class="main-content" style="margin-left: 260px; padding: 20px;">
-
-   @if(session('succès'))
-        <div id="success-message" class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('succès') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-    @if(session('Role'))
-        <div id="success-message" class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('Role') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-     @if(session('etudiant'))
-        <div id="success-message" class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('etudiant') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-     @if(session('professeur'))
-        <div id="success-message" class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('professeur') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-    <div style="display:flex" >
-        <h1 > Bienvenue,</h1> <h1 class="mb-4" style="color: #c9509d"> <strong>{{ Auth::user()->name }}</strong> </h1>
-    </div>
+<div class="main-content">
+    <h2 class="mb-4">Dashboard Admin</h2>
 
     <div class="row g-4">
 
-        <div class="col-md-6">
-            <div class="card shadow-lg border-0 rounded-4 bg-gradient-blue text-white p-4">
-                <div class="d-flex align-items-center">
-                    <div class="me-3">
-                        <i class="bi bi-person-badge" style="font-size: 50px;"></i>
-                    </div>
-                    <div>
-                        <h6 class="mb-2">Professeurs</h6>
-                        <h2 class="fw-bold">{{ $nbProfesseurs }}</h2>
-                    </div>
-                </div>
+
+        <div class="col-md-4">
+            <div class="card card-custom text-center">
+                <h5 class="card-title"><i class="bi bi-person-badge"></i> Professeurs</h5>
+                <h2 class="text-primary">{{ $nbProfesseurs }}</h2>
+                <a href="{{ route('admin.professeurs') }}" class="btn btn-primary btn-sm mt-2"><i class="bi bi-gear"></i> Gérer</a>
             </div>
         </div>
 
 
-        <div class="col-md-6">
-            <div class="card shadow-lg border-0 rounded-4 bg-gradient-green text-white p-4">
-                <div class="d-flex align-items-center">
-                    <div class="me-3">
-                        <i class="bi bi-mortarboard" style="font-size: 50px;"></i>
-                    </div>
-                    <div>
-                        <h6 class="mb-2">Étudiants</h6>
-                        <h2 class="fw-bold">{{ $nbEtudiants }}</h2>
-                    </div>
-                </div>
+        <div class="col-md-4">
+            <div class="card card-custom text-center">
+                <h5 class="card-title"><i class="bi bi-mortarboard"></i> Étudiants</h5>
+                <h2 class="text-success">{{ $nbEtudiants }}</h2>
+                <a href="{{ route('admin.etudiants') }}" class="btn btn-success btn-sm mt-2"><i class="bi bi-gear"></i> Gérer</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card card-custom text-center">
+                <h5 class="card-title"><i class="bi bi-journal-text"></i> Notes</h5>
+                <h2 class="text-warning"><i class="bi bi-graph-up"></i></h2>
+                <a href="{{ route('admin.notes') }}" class="btn btn-warning btn-sm mt-2"><i class="bi bi-eye"></i> Voir</a>
             </div>
         </div>
 
     </div>
 </div>
 
-<style>
-    .bg-gradient-blue {
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
-    }
-    .bg-gradient-green {
-        background: linear-gradient(135deg, #22c55e, #16a34a);
-    }
-    .card h2 {
-        font-size: 40px;
-    }
-    .card h6 {
-        font-size: 16px;
-        text-transform: uppercase;
-        opacity: 0.85;
-    }
-</style>
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 @endsection

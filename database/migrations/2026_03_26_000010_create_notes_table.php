@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('etudiant_id');
-            $table->unsignedBigInteger('professeur_id');
             $table->string('matiere');
             $table->integer('note');
             $table->timestamps();

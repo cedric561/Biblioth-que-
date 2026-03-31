@@ -3,10 +3,10 @@
 @section('content')
 
 <style>
-    /* Sidebar fixe */
+
     .sidebar {
         position: fixed;
-        top: 55px; /* hauteur navbar */
+        top: 55px;
         left: 0;
         width: 250px;
         height: 100%;
@@ -50,10 +50,21 @@
         min-height: 100vh;
     }
 
-    .card-custom {
+    .form-card {
         border: none;
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        padding: 30px;
+        background-color: #fff;
+    }
+
+    .form-card h2 {
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: 500;
     }
 
     .btn i {
@@ -61,7 +72,6 @@
     }
 </style>
 
-<!-- Sidebar -->
 <div class="sidebar">
     <h4>Prof Panel</h4>
     <ul class="nav flex-column">
@@ -83,47 +93,40 @@
     </ul>
 </div>
 
-<!-- Contenu principal -->
 <div class="main-content">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-12">
+            <div class="form-card">
 
-    <!-- Header -->
-    <div class="mb-5">
-        <h2 class="fw-bold">Dashboard Professeur</h2>
-        <p class="text-muted">Bienvenue, {{ auth()->user()->name }}</p>
-    </div>
+                <h2><i class="bi bi-pencil-square"></i> Modifier Note</h2>
 
-    <!-- Cards -->
-    <div class="row g-4">
+                <form method="POST" action="{{ route('professeur.updateNote', $note->id) }}">
+                    @csrf
+                    @method('PUT')
 
-        <div class="col-lg-6 col-12">
-            <div class="card card-custom h-100">
-                <div class="card-body text-center p-5 d-flex flex-column justify-content-center">
-                    <h5 class="mb-3"><i class="bi bi-journal-text"></i> Gérer les Notes</h5>
-                    <p class="text-muted">Voir, modifier et supprimer vos notes</p>
-                    <a href="{{ route('professeur.notes') }}" class="btn btn-primary mt-3">
-                        <i class="bi bi-arrow-right-circle"></i> Accéder
-                    </a>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Matière</label>
+                        <input type="text" name="matiere" class="form-control" value="{{ $note->matiere }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Note</label>
+                        <input type="number" name="note" class="form-control" value="{{ $note->note }}" required min="0" max="20">
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-check-circle"></i> Mettre à jour
+                        </button>
+                    </div>
+
+                </form>
+
             </div>
         </div>
-
-        <div class="col-lg-6 col-12">
-            <div class="card card-custom h-100">
-                <div class="card-body text-center p-5 d-flex flex-column justify-content-center">
-                    <h5 class="mb-3"><i class="bi bi-plus-circle"></i> Ajouter une Note</h5>
-                    <p class="text-muted">Créer une nouvelle note pour un étudiant</p>
-                    <a href="{{ route('professeur.createNote') }}" class="btn btn-success mt-3">
-                        <i class="bi bi-plus-lg"></i> Ajouter
-                    </a>
-                </div>
-            </div>
-        </div>
-
     </div>
-
 </div>
 
-<!-- Bootstrap Icons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 @endsection

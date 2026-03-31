@@ -2,57 +2,25 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role'
-    ];
-    public function isAdmin() { return $this->role === 'admin'; }
-    public function isProfesseur() { return $this->role === 'professeur'; }
-    public function isEtudiant() { return $this->role === 'etudiant'; }
+    protected $fillable = ['name', 'email', 'password', 'role'];
 
-    public function notes() {
-        return $this->hasMany(Note::class, 'professeur_id');
-    }
+    protected $hidden = ['password', 'remember_token'];
 
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function notes()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        if($this->role == 'etudiant') {
+            return $this->hasMany(Note::class, 'etudiant_id');
+        }
+        if($this->role == 'professeur') {
+            return $this->hasMany(Note::class, 'professeur_id');
+        }
+        return null;
     }
 }

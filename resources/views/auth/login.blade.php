@@ -2,56 +2,67 @@
 
 @section('content')
 
-<div class="container py-5">
-    <div class="row justify-content-center align-items-center">
+<!-- Styles spécifiques -->
+<style>
+    body {
+        background-color: #f4f6f9;
+    }
 
-        <div class="col-md-5">
-            <div class="card shadow-sm border-0 rounded p-4">
+    .login-card {
+        max-width: 400px;
+        margin: 80px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
 
-                <h3 class="card-title text-center fw-bold text-primary mb-4">
-                     Connexion
-                </h3>
+    .login-card h2 {
+        font-weight: bold;
+        margin-bottom: 25px;
+        text-align: center;
+    }
 
+    .login-card .form-control {
+        height: 45px;
+    }
 
-                @if(session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                        {{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
+    .login-card .btn i {
+        margin-right: 5px;
+    }
 
+    .alert {
+        margin-bottom: 20px;
+    }
+</style>
 
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="email" class="form-label fw-semibold">Adresse Email</label>
-                        <input type="email" id="email" name="email" placeholder="exemple@mail.com"
-                               class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required autofocus>
-                        @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="password" class="form-label fw-semibold">Mot de passe</label>
-                        <input type="password" id="password" name="password" placeholder="••••••••"
-                               class="form-control @error('password') is-invalid @enderror" required>
-                        @error('password')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+<div class="login-card">
+    <h2><i class="bi bi-person-circle"></i> Connexion</h2>
 
-                    <button type="submit" class="btn btn-primary w-100 d-flex justify-content-center align-items-center">
-                        <i class="bi bi-box-arrow-in-right me-2"></i> Se connecter
-                    </button>
-
-
-
-                </form>
-            </div>
+    @if(session('error'))
+        <div class="alert alert-danger text-center">
+            {{ session('error') }}
         </div>
-    </div>
+    @endif
+
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
+        <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="Email" required>
+        </div>
+
+        <div class="mb-3">
+            <input type="password" name="password" class="form-control" placeholder="Mot de passe" required>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="bi bi-box-arrow-in-right"></i> Se connecter
+            </button>
+        </div>
+    </form>
 </div>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 @endsection

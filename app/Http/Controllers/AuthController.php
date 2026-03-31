@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,16 +9,12 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-
-    public function showLogin() {
-        return view('auth.login');
-    }
-
+    public function showLogin() { return view('auth.login'); }
 
     public function login(Request $request) {
-        $db = $request->only('email','password');
+        $credentials = $request->only('email','password');
 
-        if(Auth::attempt($db)) {
+        if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
             $role = Auth::user()->role;
             if($role == 'admin') return redirect()->route('admin.dashboard');
@@ -28,10 +25,7 @@ class AuthController extends Controller
         return back()->with('error','Email ou mot de passe incorrect');
     }
 
-
-    public function showRegister() {
-        return view('auth.register');
-    }
+    public function showRegister() { return view('auth.register'); }
 
     public function register(Request $request) {
         $request->validate([
@@ -53,7 +47,6 @@ class AuthController extends Controller
         if($user->role=='professeur') return redirect()->route('professeur.dashboard');
         if($user->role=='etudiant') return redirect()->route('etudiant.dashboard');
     }
-
 
     public function logout(Request $request) {
         Auth::logout();
