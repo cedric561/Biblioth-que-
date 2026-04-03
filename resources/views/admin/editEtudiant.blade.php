@@ -49,14 +49,14 @@
         background-color: #f4f6f9;
     }
 
-    .card-stat {
+    .card-custom {
         border: none;
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         padding: 20px;
     }
 
-    .card-stat h2 {
+    .card-custom h2 {
         font-weight: bold;
     }
 
@@ -68,7 +68,6 @@
 <div class="sidebar">
     <h4 >Admin Panel</h4>
     <ul class="nav flex-column">
-
         <li class="nav-item mb-2">
             <a href="#" class="nav-link"><i class="bi bi-house-door-fill me-2"></i> Accueil</a>
         </li>
@@ -83,47 +82,47 @@
         <li class="nav-item mb-2">
             <a href="{{ route('admin.notes') }}" class="nav-link"><i class="bi bi-journal-bookmark-fill me-2"></i> Notes</a>
         </li>
-
         <li class="nav-item mt-4">
             <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle"></i> Ajouter un rôle</a>
         </li>
-
     </ul>
 </div>
 
 <div class="main-content">
-    <h2 class="mb-4">Tableau de bords</h2>
 
-    <div class="row g-4">
+    <h2 class="mb-4 text-primary">
+        <i class="bi bi-pencil-square me-2"></i> Modifier l'étudiant
+    </h2>
 
-        <div class="col-md-4">
-            <div class="card card-stat text-center">
-                <h5 class="card-title"><i class="bi bi-person-badge"></i> Professeurs</h5>
-                <h2 class="text-primary">{{ $nbProfesseurs }}</h2>
-                <a href="{{ route('admin.professeurs') }}" class="btn btn-primary btn-sm mt-2"><i class="bi bi-gear"></i> Gérer</a>
+    <div class="card shadow p-4">
+
+        <form action="{{ route('admin.updateEtudiant', $etudiant->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+
+            <div class="mb-3">
+                <label>Nom</label>
+                <input type="text" name="name" class="form-control"
+                       value="{{ $etudiant->name }}" required>
             </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="card card-stat text-center">
-                <h5 class="card-title"><i class="bi bi-mortarboard"></i> Étudiants</h5>
-                <h2 class="text-success">{{ $nbEtudiants }}</h2>
-                <a href="{{ route('admin.etudiants') }}" class="btn btn-success btn-sm mt-2"><i class="bi bi-gear"></i> Gérer</a>
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control"
+                       value="{{ $etudiant->email }}" required>
             </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="card card-stat text-center" >
-                <h5 class="card-title"><i class="bi bi-journal-text"></i> Notes</h5>
-                <h2 class="text-warning"><i class="bi bi-graph-up"></i></h2>
-                <a href="{{ route('admin.notes') }}" class="btn btn-warning btn-sm mt-2"><i class="bi bi-eye"></i> Voir</a>
-            </div>
-        </div>
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle"></i> Mettre à jour
+            </button>
+
+            <a href="{{ route('admin.etudiants') }}" class="btn btn-secondary">
+                Retour
+            </a>
+        </form>
 
     </div>
+
 </div>
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 @endsection

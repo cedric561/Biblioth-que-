@@ -41,11 +41,10 @@
         font-size: 1.2rem;
     }
 
-    /* Main content */
     .main-content {
-        margin-left: 250px; /* espace pour sidebar */
+        margin-left: 250px;
         padding: 40px;
-        margin-top: 70px; /* espace navbar */
+        margin-top: 70px;
         background-color: #f4f6f9;
         min-height: 100vh;
     }
@@ -77,7 +76,7 @@
     <ul class="nav flex-column">
         <li class="nav-item mb-3">
             <a href="{{ route('professeur.dashboard') }}" class="nav-link">
-                <i class="bi bi-speedometer2"></i> Dashboard
+                <i class="bi bi-house-fill"></i> Accuel
             </a>
         </li>
         <li class="nav-item mb-3">
@@ -89,6 +88,9 @@
             <a href="{{ route('professeur.createNote') }}" class="nav-link">
                 <i class="bi bi-plus-circle"></i> Ajouter Note
             </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('professeur.profils') }}" class="nav-link text-white"><i class="bi bi-person-circle"></i> Mon Profil</a>
         </li>
     </ul>
 </div>

@@ -58,7 +58,7 @@
     <ul class="nav flex-column">
         <li class="nav-item mb-2">
             <a href="{{ route('admin.dashboard') }}" class="nav-link">
-                <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                <i class="bi bi-house-door-fill me-2"></i> Accueil
             </a>
         </li>
         <li class="nav-item mb-2">
@@ -68,18 +68,30 @@
         </li>
         <li class="nav-item mb-2">
             <a href="{{ route('admin.etudiants') }}" class="nav-link">
-                <i class="bi bi-mortarboard-fill me-2"></i> Étudiants
+                <i class="bi bi-people-fill me-2"></i> Étudiants
             </a>
         </li>
         <li class="nav-item mb-2">
             <a href="{{ route('admin.notes') }}" class="nav-link">
-                <i class="bi bi-journal-text me-2"></i> Notes
+                <i class="bi bi-journal-bookmark-fill me-2"></i> Notes
             </a>
+            <li class="nav-item mt-4">
+            <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle me-2"></i> Ajouter un rôle</a>
+        </li>
         </li>
     </ul>
 </div>
 
 <div class="main-content">
+
+    @if (session('professeur'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('professeur') }}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="card card-custom">
         <h2 class="fw-bold mb-4 text-primary"><i class="bi bi-person-plus-fill me-2"></i>Ajouter un professeur</h2>
 
@@ -114,5 +126,5 @@
 </div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @endsection

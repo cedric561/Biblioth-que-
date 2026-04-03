@@ -33,9 +33,10 @@
     .alert {
         margin-bottom: 20px;
     }
+
 </style>
 
-<div class="login-card">
+<div  class="login-card sticky-top" style="margin-top: 170px;">
     <h2><i class="bi bi-person-circle"></i> Connexion</h2>
 
     @if(session('error'))
@@ -44,7 +45,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}"style="margin-top: 30px;">
         @csrf
         <div class="mb-3">
             <input type="email" name="email" class="form-control" placeholder="Email" required>

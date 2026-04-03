@@ -56,7 +56,7 @@
     <ul class="nav flex-column">
         <li class="nav-item mb-2">
             <a href="{{ route('admin.dashboard') }}" class="nav-link">
-                <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                <i class="bi bi-house-door-fill me-2"></i>  Accueil
             </a>
         </li>
         <li class="nav-item mb-2">
@@ -86,7 +86,7 @@
 
 
     <div class="header-section">
-        <h2 class="fw-bold text-primary">
+        <h2 class="fw-bold text-primary text-center">
             <i class="bi bi-person-plus-fill me-2"></i> Ajouter un utilisateur
         </h2>
     </div>
@@ -94,7 +94,12 @@
 
     <div class="row justify-content-center">
         <div class="col-md-6">
-
+            @if (session('role'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('role')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="card p-4">
 
                 <form method="POST" action="{{ route('register') }}">
@@ -140,5 +145,6 @@
 </div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 @endsection

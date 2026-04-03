@@ -3,10 +3,10 @@
 @section('content')
 
 <style>
-    /* Sidebar fixe */
+
     .sidebar {
         position: fixed;
-        top: 55px; /* hauteur navbar */
+        top: 55px;
         left: 0;
         width: 250px;
         height: 100%;
@@ -21,19 +21,15 @@
         text-align: center;
     }
 
-    .sidebar .nav-link {
-        color: #fff;
-        font-weight: 500;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-        transition: 0.3s;
-    }
+
 
     .sidebar .nav-link:hover {
         background-color: #0d6efd;
         border-radius: 6px;
         color: #fff;
+    }
+    .sidebar .nav-link {
+        color: #ffffff;
     }
 
     .sidebar .nav-link i {
@@ -41,11 +37,11 @@
         font-size: 1.2rem;
     }
 
-    /* Main content */
+
     .main-content {
-        margin-left: 250px; /* espace pour sidebar */
+        margin-left: 250px;
         padding: 40px;
-        margin-top: 70px; /* espace navbar */
+        margin-top: 70px;
         background-color: #f4f6f9;
         min-height: 100vh;
     }
@@ -61,41 +57,42 @@
     }
 </style>
 
-<!-- Sidebar -->
+
 <div class="sidebar">
     <h4>Prof Panel</h4>
     <ul class="nav flex-column">
-        <li class="nav-item mb-3">
+        <li class="nav-link mb-3">
             <a href="{{ route('professeur.dashboard') }}" class="nav-link">
-                <i class="bi bi-speedometer2"></i> Dashboard
+                <i class="bi bi-house-fill"></i> Accueil
             </a>
         </li>
-        <li class="nav-item mb-3">
+        <li class="nav-link mb-3">
             <a href="{{ route('professeur.notes') }}" class="nav-link">
                 <i class="bi bi-journal-text"></i> Mes Notes
             </a>
         </li>
-        <li class="nav-item mb-3">
+        <li class="nav-link mb-3">
             <a href="{{ route('professeur.createNote') }}" class="nav-link">
                 <i class="bi bi-plus-circle"></i> Ajouter Note
             </a>
         </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('professeur.profils') }}" class="nav-link text-white"><i class="bi bi-person-circle"></i> Mon Profil</a>
+        </li>
     </ul>
 </div>
 
-<!-- Contenu principal -->
+
 <div class="main-content">
 
-    <!-- Header -->
     <div class="mb-5">
-        <h2 class="fw-bold">Dashboard Professeur</h2>
-        <p class="text-muted">Bienvenue, {{ auth()->user()->name }}</p>
+        <h2 class="fw-bold" style="text-align: center;">Tableau de bord </h2>
+        <h3 class="text-muted">Bienvenue,<b style=" color: #0d6efd;">{{ auth()->user()->name }}</b> </h3>
     </div>
 
-    <!-- Cards -->
     <div class="row g-4">
 
-        <div class="col-lg-6 col-12">
+        <div class="col-lg-6 ">
             <div class="card card-custom h-100">
                 <div class="card-body text-center p-5 d-flex flex-column justify-content-center">
                     <h5 class="mb-3"><i class="bi bi-journal-text"></i> Gérer les Notes</h5>
@@ -123,7 +120,7 @@
 
 </div>
 
-<!-- Bootstrap Icons CDN -->
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 @endsection

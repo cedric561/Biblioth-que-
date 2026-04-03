@@ -63,6 +63,8 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 30px;
+        height: 65px;
+        color: #0d6efd;
     }
 
     .header-section h2 i {
@@ -70,37 +72,43 @@
     }
 </style>
 
+
 <div class="sidebar">
     <h4>Admin Panel</h4>
     <ul class="nav flex-column">
-        <li class="nav-item mb-2">
-            <a href="{{ route('admin.dashboard') }}" class="nav-link"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
+        <li class=" mb-2">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link"><i class="bi bi-house-door-fill me-2"></i> Accueil</a>
         </li>
-        <li class="nav-item mb-2">
+        <li class=" mb-2">
             <a href="{{ route('admin.professeurs') }}" class="nav-link"><i class="bi bi-person-badge me-2"></i> Professeurs</a>
         </li>
-        <li class="nav-item mb-2">
-            <a href="{{ route('admin.etudiants') }}" class="nav-link"><i class="bi bi-mortarboard me-2"></i> Étudiants</a>
+        <li class=" mb-2">
+            <a href="{{ route('admin.etudiants') }}" class="nav-link"><i class="bi bi-people-fill me-2"></i> Étudiants</a>
         </li>
-        <li class="nav-item mb-2">
+        <li class=" mb-2">
             <a href="{{ route('admin.notes') }}" class="nav-link"><i class="bi bi-journal-text me-2"></i> Notes</a>
         </li>
-        <li class="nav-item mt-4">
+        <li class=" mt-4">
             <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle me-2"></i> Ajouter un rôle</a>
         </li>
     </ul>
 </div>
 
-<div class="main-content">
 
-    <div class="header-section">
-        <h2 class="fw-bold text-primary">
-            <i class="bi bi-person-badge me-2"></i> Liste des professeurs
-        </h2>
-        <a href="{{ route('admin.createProfesseur') }}" class="btn btn-success d-flex align-items-center">
-            <i class="bi bi-plus-circle me-2"></i> Ajouter un professeur
-        </a>
+<div class="main-content">
+    <div class="p-3">
+        <div class="header-section">
+            <h2 class="fw-bold mb-0">
+                <i class="bi bi-person-badge me-2"></i> Liste des professeurs
+            </h2>
+
+            <a href="{{ route('admin.createProfesseur') }}" class="btn btn-success d-flex align-items-center">
+                <i class="bi bi-plus-circle me-2"></i> Ajouter un professeur
+            </a>
+        </div>
     </div>
+
+
 
     <div class="table-responsive">
         <table class="table table-hover table-bordered align-middle mb-0">
@@ -115,18 +123,18 @@
             <tbody>
                 @forelse($professeurs as $prof)
                 <tr>
-                    <td class="text-center">{{ $prof->id }}</td>
+                    <td class="text-center">{{ $loop->iteration }}</td>
                     <td>{{ $prof->name }}</td>
                     <td>{{ $prof->email }}</td>
                     <td class="text-center">
                         <a href="{{ route('admin.editProfesseur', $prof->id) }}" class="btn btn-sm btn-primary me-1">
-                            <i class="bi bi-pencil-square"></i> Modifier
+                            <i class="bi bi-pencil-square"></i>
                         </a>
                         <form action="{{ route('admin.deleteProfesseur', $prof->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ce professeur ?')">
-                                <i class="bi bi-trash-fill"></i> Supprimer
+                            <button type="submit" class="btn btn-sm btn-danger" >
+                                <i class="bi bi-trash"></i>
                             </button>
                         </form>
                     </td>
