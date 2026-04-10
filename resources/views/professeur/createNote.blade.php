@@ -8,7 +8,7 @@
             left: 0;
             width: 250px;
             height: 100%;
-            background-color: #212529;
+            background-color: #4b5157;
             padding: 20px;
             color: #fff;
         }

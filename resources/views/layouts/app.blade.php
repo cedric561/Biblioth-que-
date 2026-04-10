@@ -13,33 +13,11 @@
             background-color: #f4f6f9;
         }
 
-        .navbar-custom {
-            background-color: #212529;
-        }
-
-        .navbar-custom .navbar-brand,
-        .navbar-custom .nav-link {
-            color: #ffffff !important;
-        }
-
-        .navbar-custom .nav-link:hover {
-            color: #0d6efd !important;
-        }
-
-        .main-container {
-            margin-top: 30px;
-        }
-
-        .card-custom {
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
     <div class="container-fluid">
         <i class="bi bi-mortarboard-fill fs-2" style="color: yellow;"></i><b style="font-size: 25px; color:#ffffff; margin-left:10px;"> Gest_</b><span style="color: yellow; font-size:21px;">School</span>
         <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

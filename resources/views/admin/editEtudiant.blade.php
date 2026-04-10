@@ -4,41 +4,34 @@
 
 <style>
 
-    .sidebar {
-        position: fixed;
-        top: 55px;
-        left: 0;
-        width: 250px;
-        height: 100%;
-        background-color: #212529;
-        padding: 20px;
-        color: #fff;
-    }
+.sidebar {
+    position: fixed;
+    top: 55px;
+    left: 0;
+    width: 250px;
+    height: 100%;
+        background-color: #4b5157;
+    color: #fff;
+    padding: 20px;
+}
 
-    .sidebar h4 {
-        text-align: center;
-        margin-bottom: 2rem;
-        font-weight: bold;
-    }
+.sidebar h4 {
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+}
 
-    .sidebar .nav-link {
-        color: #fff;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-        transition: 0.3s;
-    }
+.sidebar .nav-link {
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    transition: 0.3s;
+}
 
-    .sidebar .nav-link:hover {
-        background-color: #0d6efd;
-        border-radius: 6px;
-        color: #fff;
-    }
-
-    .sidebar .nav-link i {
-        margin-right: 10px;
-        font-size: 1.2rem;
-    }
+.sidebar .nav-link:hover {
+    background-color: #0d6efd;
+    border-radius: 6px;
+}
 
 
     .main-content {
@@ -66,24 +59,30 @@
 </style>
 
 <div class="sidebar">
-    <h4 >Admin Panel</h4>
+    <h4>Admin Panel</h4>
     <ul class="nav flex-column">
         <li class="nav-item mb-2">
-            <a href="#" class="nav-link"><i class="bi bi-house-door-fill me-2"></i> Accueil</a>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                <i class="bi bi-house-door-fill me-2"></i> Accueil
+            </a>
         </li>
         <li class="nav-item mb-2">
-            <a href="{{ route('admin.professeurs') }}" class="nav-link"><i class="bi bi-person-badge"></i> Professeurs</a>
+            <a href="{{ route('admin.professeurs') }}" class="nav-link">
+                <i class="bi bi-person-badge me-2"></i> Professeurs
+            </a>
         </li>
-
         <li class="nav-item mb-2">
-            <a href="{{ route('admin.etudiants') }}" class="nav-link"><i class="bi bi-people-fill me-2"></i> Étudiants</a>
+            <a href="{{ route('admin.etudiants') }}" class="nav-link active bg-primary rounded">
+                <i class="bi bi-people-fill me-2"></i> Étudiants
+            </a>
         </li>
-
         <li class="nav-item mb-2">
-            <a href="{{ route('admin.notes') }}" class="nav-link"><i class="bi bi-journal-bookmark-fill me-2"></i> Notes</a>
+            <a href="{{ route('admin.notes') }}" class="nav-link">
+                <i class="bi bi-journal-bookmark-fill me-2"></i> Notes
+            </a>
         </li>
-        <li class="nav-item mt-4">
-            <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle"></i> Ajouter un rôle</a>
+         <li class="nav-item mt-4">
+            <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle me-2"></i> Ajouter un Membre</a>
         </li>
     </ul>
 </div>

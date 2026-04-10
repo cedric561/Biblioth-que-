@@ -28,7 +28,7 @@ class AuthController extends Controller
     }
 
     public function showRegister() {
-        
+
          return view('auth.register');
         }
 
@@ -46,7 +46,7 @@ class AuthController extends Controller
             'password'=>Hash::make($request->password),
             'role'=>$request->role
         ]);
-        return redirect()->back()->with('role','Rôle ajouté avec succès');
+        return redirect()->back()->with('role','Membre ajouté avec succès');
     }
 
     public function logout(Request $request) {

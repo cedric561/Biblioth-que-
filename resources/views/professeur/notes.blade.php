@@ -3,14 +3,13 @@
 @section('content')
 
 <style>
-
     .sidebar {
         position: fixed;
         top: 55px;
         left: 0;
         width: 250px;
         height: 100%;
-        background-color: #212529;
+        background-color: #4b5157;
         padding: 20px;
         color: #fff;
     }
@@ -21,22 +20,25 @@
         text-align: center;
     }
 
-
+    .sidebar .nav-link {
+        color: #fff;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        transition: 0.3s;
+    }
 
     .sidebar .nav-link:hover {
         background-color: #0d6efd;
         border-radius: 6px;
         color: #fff;
     }
-    .sidebar .nav-link {
-        color: #ffffff;
-    }
 
     .sidebar .nav-link i {
         margin-right: 10px;
         font-size: 1.2rem;
     }
-
 
     .main-content {
         margin-left: 250px;
@@ -57,30 +59,29 @@
     }
 </style>
 
-
-<div class="sidebar">
-    <h4>Prof Panel</h4>
-    <ul class="nav flex-column">
-        <li class="nav-link mb-3">
-            <a href="{{ route('professeur.dashboard') }}" class="nav-link">
-                <i class="bi bi-house-fill"></i> Accueil
-            </a>
-        </li>
-        <li class="nav-link mb-3">
-            <a href="{{ route('professeur.notes') }}" class="nav-link">
-                <i class="bi bi-journal-text"></i> Mes Notes
-            </a>
-        </li>
-        <li class="nav-link mb-3">
-            <a href="{{ route('professeur.createNote') }}" class="nav-link">
-                <i class="bi bi-plus-circle"></i> Ajouter Note
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a href="{{ route('professeur.profils') }}" class="nav-link text-white"><i class="bi bi-person-circle"></i> Mon Profil</a>
-        </li>
-    </ul>
-</div>
+        <div class="sidebar">
+            <h4>Prof Panel</h4>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-3">
+                    <a href="{{ route('professeur.dashboard') }}" class="nav-link">
+                        <i class="bi bi-house-fill"></i> Accueil
+                    </a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a href="{{ route('professeur.notes') }}" class="nav-link">
+                        <i class="bi bi-journal-text"></i> Mes Notes
+                    </a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a href="{{ route('professeur.createNote') }}" class="nav-link">
+                        <i class="bi bi-plus-circle"></i> Ajouter Note
+                    </a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a href="{{ route('professeur.profils') }}" class="nav-link text-white"><i class="bi bi-person-circle"></i> Mon Profil</a>
+                </li>
+            </ul>
+        </div>
 
 
 

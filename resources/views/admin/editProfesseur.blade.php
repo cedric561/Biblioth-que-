@@ -3,49 +3,42 @@
 @section('content')
 
 <style>
-/* Sidebar */
-.sidebar {
-    position: fixed;
-    top: 55px;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background: linear-gradient(180deg, #212529, #343a40);
-    padding: 20px;
-    color: #fff;
-}
 
-.sidebar h4 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-weight: bold;
-}
+    .sidebar {
+        position: fixed;
+        top: 55px;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        background-color: #4b5157;
+        padding: 20px;
+        color: #fff;
+    }
 
-.sidebar .nav-link {
-    color: #ddd;
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-radius: 6px;
-    transition: 0.3s;
-}
+    .sidebar h4 {
+        margin-bottom: 2rem;
+        font-weight: bold;
+        text-align: center;
+    }
 
-.sidebar .nav-link:hover {
-    background-color: #0d6efd;
-    color: #fff;
-}
+    .sidebar .nav-link {
+        color: #fff;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        transition: 0.3s;
+    }
 
-.sidebar .nav-link i {
-    margin-right: 10px;
-}
+    .sidebar .nav-link:hover {
+        background-color: #0d6efd;
+        border-radius: 6px;
+        color: #fff;
+    }
 
-/* Content */
+
 .content {
     margin-left: 270px;
 }
 
-/* Card Form */
 .form-card {
     background: #fff;
     border-radius: 12px;
@@ -68,26 +61,31 @@
 <div class="sidebar">
     <h4>Admin Panel</h4>
     <ul class="nav flex-column">
-        <li class="nav-item">
-            <a href="#" class="nav-link"><i class="bi bi-house-door-fill"></i> Accueil</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('admin.professeurs') }}" class="nav-link"><i class="bi bi-person-badge"></i> Professeurs</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('admin.etudiants') }}" class="nav-link"><i class="bi bi-people-fill me-2"></i> Étudiants</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('admin.notes') }}" class="nav-link"><i class="bi bi-journal-bookmark-fill"></i> Notes</a>
-        </li>
-        <li class="nav-item mt-4">
-            <a href="{{ route('register') }}" class="btn btn-outline-light w-100">
-                <i class="bi bi-plus-circle"></i> Ajouter un rôle
+        <li class="nav-item mb-2">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                <i class="bi bi-house-door-fill me-2"></i> Accueil
             </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('admin.professeurs') }}" class="nav-link">
+                <i class="bi bi-person-badge me-2"></i> Professeurs
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('admin.etudiants') }}" class="nav-link active bg-primary rounded">
+                <i class="bi bi-people-fill me-2"></i> Étudiants
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="{{ route('admin.notes') }}" class="nav-link">
+                <i class="bi bi-journal-bookmark-fill me-2"></i> Notes
+            </a>
+        </li>
+         <li class="nav-item mt-4">
+            <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle me-2"></i> Ajouter un Membre</a>
         </li>
     </ul>
 </div>
-
 <div class="content container py-5">
 
     <div class="row justify-content-center">

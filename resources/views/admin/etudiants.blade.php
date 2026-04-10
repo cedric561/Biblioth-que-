@@ -3,14 +3,14 @@
 @section('content')
 
 <style>
-/* Sidebar */
+
 .sidebar {
     position: fixed;
     top: 55px;
     left: 0;
     width: 250px;
     height: 100%;
-    background-color: #212529;
+        background-color: #4b5157;
     color: #fff;
     padding: 20px;
 }
@@ -33,7 +33,7 @@
     border-radius: 6px;
 }
 
-/* Main */
+
 .main-content {
     margin-left: 250px;
     padding: 40px;
@@ -42,7 +42,7 @@
     background-color: #f4f6f9;
 }
 
-/* Table */
+
 .table-responsive {
     border-radius: 12px;
     overflow: hidden;
@@ -53,7 +53,6 @@
     background-color: #e9f5ff;
 }
 
-/* Header */
 .header-section {
     display: flex;
     justify-content: space-between;
@@ -61,7 +60,7 @@
     margin-bottom: 30px;
 }
 
-/* Boutons */
+
 .btn-action {
     display: flex;
     gap: 5px;
@@ -88,11 +87,11 @@
         </li>
         <li class="nav-item mb-2">
             <a href="{{ route('admin.notes') }}" class="nav-link">
-                <i class="bi bi-journal-text me-2"></i> Notes
+                <i class="bi bi-journal-bookmark-fill me-2"></i> Notes
             </a>
         </li>
          <li class="nav-item mt-4">
-            <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle me-2"></i> Ajouter un rôle</a>
+            <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle me-2"></i> Ajouter un Membre</a>
         </li>
     </ul>
 </div>
@@ -104,9 +103,6 @@
             <i class="bi bi-mortarboard-fill me-2"></i> Liste des étudiants
         </h2>
 
-        <a href="{{ route('admin.createEtudiant') }}" class="btn btn-success">
-            <i class="bi bi-plus-circle me-2"></i> Ajouter
-        </a>
     </div>
 
     <div class="table-responsive">

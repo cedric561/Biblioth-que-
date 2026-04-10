@@ -8,7 +8,9 @@ use App\Models\User;
 
 class EtudiantController extends Controller
 {
-    public function dashboard() { return view('etudiant.dashboard'); }
+    public function dashboard() {
+         return view('etudiant.dashboard');
+         }
 
     public function notes(){
         $notes = Note::with('professeur')->where('etudiant_id', Auth::id())->get();

@@ -10,7 +10,7 @@
         left: 0;
         width: 250px;
         height: 100%;
-        background-color: #212529;
+        background-color: #4b5157;
         padding: 20px;
         color: #fff;
     }
@@ -89,7 +89,7 @@
                 <i class="bi bi-plus-circle"></i> Ajouter Note
             </a>
         </li>
-        <li class="nav-item mb-2">
+        <li class="nav-item mb-3">
             <a href="{{ route('professeur.profils') }}" class="nav-link text-white"><i class="bi bi-person-circle"></i> Mon Profil</a>
         </li>
     </ul>

@@ -20,22 +20,6 @@ class AdminController extends Controller
         return view('admin.professeurs', compact('professeurs'));
     }
 
-    public function createProfesseur(){
-         return view('admin.createProfesseur');
-         }
-
-    public function storeProfesseur(Request $request){
-        User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'role'=>'professeur'
-        ]);
-        return redirect()->back()
-            ->with('professeur','Professeur ajouté avec succès!');
-    }
-
-
 
 
 
@@ -45,20 +29,6 @@ class AdminController extends Controller
         return view('admin.etudiants', compact('etudiants'));
     }
 
-    public function createEtudiant(){
-         return view('admin.createEtudiant');
-        }
-
-    public function storeEtudiant(Request $request){
-        User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'role'=>'etudiant'
-        ]);
-        return redirect()->back()
-            ->with('etudiant','Etudiant ajouté avec succès!');
-    }
 
     public function editEtudiant($id)
     {

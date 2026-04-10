@@ -9,7 +9,7 @@
         left: 0;
         width: 250px;
         height: 100%;
-        background-color: #212529;
+        background-color: #4b5157;
         padding: 20px;
         color: #fff;
     }
@@ -80,10 +80,10 @@
             <a href="{{ route('admin.etudiants') }}" class="nav-link"><i class="bi bi-people-fill me-2"></i> Étudiants</a>
         </li>
         <li class="nav-item mb-2">
-            <a href="{{ route('admin.notes') }}" class="nav-link"><i class="bi bi-journal-text me-2"></i> Notes</a>
+            <a href="{{ route('admin.notes') }}" class="nav-link active bg-primary rounded"><i class="bi bi-journal-bookmark-fill me-2"></i> Notes</a>
         </li>
         <li class="nav-item mt-4">
-            <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle me-2"></i> Ajouter un rôle</a>
+            <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle me-2"></i> Ajouter un Membre</a>
         </li>
     </ul>
 </div>

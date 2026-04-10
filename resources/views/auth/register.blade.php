@@ -9,7 +9,7 @@
         left: 0;
         width: 250px;
         height: 100%;
-        background-color: #212529;
+        background-color: #4b5157;
         color: #fff;
         padding: 20px;
     }
@@ -39,6 +39,7 @@
         margin-top: 70px;
         min-height: 100vh;
         background-color: #f4f6f9;
+        width: 1050px;
     }
 
     .card {
@@ -66,7 +67,7 @@
         </li>
         <li class="nav-item mb-2">
             <a href="{{ route('admin.etudiants') }}" class="nav-link">
-                <i class="bi bi-mortarboard-fill me-2"></i> Étudiants
+                <i class="bi bi-people-fill me-2"></i> Étudiants
             </a>
         </li>
         <li class="nav-item mb-2">
@@ -76,14 +77,13 @@
         </li>
         <li class="nav-item mt-4">
             <a href="{{ route('register') }}" class="btn btn-outline-light w-100 active">
-                <i class="bi bi-person-plus me-2"></i> Ajouter un rôle
+                <i class="bi bi-plus-circle me-2"></i> Ajouter un Membre
             </a>
         </li>
     </ul>
 </div>
 
 <div class="main-content">
-
 
     <div class="header-section">
         <h2 class="fw-bold text-primary text-center">
