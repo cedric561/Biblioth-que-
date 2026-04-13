@@ -9,7 +9,7 @@
         left: 0;
         width: 250px;
         height: 100%;
-        background-color: #212529;
+        background-color: #4b5157;
         padding: 20px;
         color: #fff;
     }
@@ -64,23 +64,26 @@
     }
 </style>
 
+
 <div class="sidebar">
+
     <h4>Admin Panel</h4>
+
     <ul class="nav flex-column">
         <li class="nav-item mb-2">
-            <a href="{{ route('admin.dashboard') }}" class="nav-link"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link"><i class="bi bi-house-door-fill me-2"></i> Accueil</a>
         </li>
         <li class="nav-item mb-2">
             <a href="{{ route('admin.professeurs') }}" class="nav-link"><i class="bi bi-person-badge me-2"></i> Professeurs</a>
         </li>
         <li class="nav-item mb-2">
-            <a href="{{ route('admin.etudiants') }}" class="nav-link"><i class="bi bi-mortarboard me-2"></i> Étudiants</a>
+            <a href="{{ route('admin.etudiants') }}" class="nav-link"><i class="bi bi-people-fill me-2"></i> Étudiants</a>
         </li>
         <li class="nav-item mb-2">
-            <a href="{{ route('admin.notes') }}" class="nav-link"><i class="bi bi-journal-text me-2"></i> Notes</a>
+            <a href="{{ route('admin.notes') }}" class="nav-link active bg-primary rounded"><i class="bi bi-journal-bookmark-fill me-2"></i> Notes</a>
         </li>
         <li class="nav-item mt-4">
-            <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle me-2"></i> Ajouter un rôle</a>
+            <a href="{{ route('register') }}" class="btn btn-outline-light w-100"><i class="bi bi-plus-circle me-2"></i> Ajouter un Membre</a>
         </li>
     </ul>
 </div>
@@ -107,7 +110,7 @@
             <tbody>
                 @forelse($notes as $note)
                 <tr>
-                    <td class="text-center">{{ $note->id }}</td>
+                    <td class="text-center">{{ $loop->iteration }}</td>
                     <td>{{ $note->etudiant->name ?? 'N/A' }}</td>
                     <td>{{ $note->professeur->name ?? 'N/A' }}</td>
                     <td>{{ $note->matiere }}</td>

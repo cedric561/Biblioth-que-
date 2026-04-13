@@ -16,6 +16,10 @@ class ProfesseurController extends Controller
         return view('professeur.notes', compact('notes'));
     }
 
+    public function profils(){
+        return view('professeur.profils');
+    }
+
     public function createNote(){
         $etudiants = User::where('role','etudiant')->get();
         return view('professeur.createNote', compact('etudiants'));
@@ -28,7 +32,7 @@ class ProfesseurController extends Controller
             'note'=>$request->note,
             'professeur_id'=>Auth::id()
         ]);
-        return redirect()->route('professeur.notes')->with('success','Note ajoutée!');
+        return redirect()->back()->with('success','Note ajoutée!');
     }
 
     public function editNote($id){

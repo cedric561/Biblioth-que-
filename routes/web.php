@@ -14,6 +14,7 @@ Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::middleware(['auth','role:admin'])->prefix('admin')->group(function(){
     Route::get('/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
+
     Route::get('/professeurs',[AdminController::class,'professeurs'])->name('admin.professeurs');
     Route::get('/create-professeur',[AdminController::class,'createProfesseur'])->name('admin.createProfesseur');
     Route::post('/store-professeur',[AdminController::class,'storeProfesseur'])->name('admin.storeProfesseur');
@@ -29,12 +30,16 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function(){
     Route::get('/create-etudiant',[AdminController::class,'createEtudiant'])->name('admin.createEtudiant');
     Route::post('/store-etudiant',[AdminController::class,'storeEtudiant'])->name('admin.storeEtudiant');
 
+    Route::get('/admin/etudiant/{id}/edit', [AdminController::class, 'editEtudiant'])->name('admin.editEtudiant');
+    Route::put('/admin/etudiant/{id}', [AdminController::class, 'updateEtudiant'])->name('admin.updateEtudiant');
+    Route::delete('/admin/etudiant/{id}', [AdminController::class, 'deleteEtudiant'])->name('admin.deleteEtudiant');
     Route::get('/notes',[AdminController::class,'notes'])->name('admin.notes');
 
 });
 
 Route::middleware(['auth','role:professeur'])->prefix('professeur')->group(function(){
     Route::get('/dashboard',[ProfesseurController::class,'dashboard'])->name('professeur.dashboard');
+    Route::get('/profils',[ProfesseurController::class, 'profils'])->name('professeur.profils');
     Route::get('/notes',[ProfesseurController::class,'notes'])->name('professeur.notes');
     Route::get('/create-note',[ProfesseurController::class,'createNote'])->name('professeur.createNote');
     Route::post('/store-note',[ProfesseurController::class,'storeNote'])->name('professeur.storeNote');
@@ -46,4 +51,6 @@ Route::middleware(['auth','role:professeur'])->prefix('professeur')->group(funct
 Route::middleware(['auth','role:etudiant'])->prefix('etudiant')->group(function(){
     Route::get('/dashboard',[EtudiantController::class,'dashboard'])->name('etudiant.dashboard');
     Route::get('/notes',[EtudiantController::class,'notes'])->name('etudiant.notes');
+    Route::get('/profils',[EtudiantController::class, 'profils'])->name('etudiant.profils');
+
 });

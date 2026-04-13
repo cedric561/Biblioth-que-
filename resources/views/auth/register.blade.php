@@ -9,7 +9,7 @@
         left: 0;
         width: 250px;
         height: 100%;
-        background-color: #212529;
+        background-color: #4b5157;
         color: #fff;
         padding: 20px;
     }
@@ -39,6 +39,7 @@
         margin-top: 70px;
         min-height: 100vh;
         background-color: #f4f6f9;
+        width: 1050px;
     }
 
     .card {
@@ -56,7 +57,7 @@
     <ul class="nav flex-column">
         <li class="nav-item mb-2">
             <a href="{{ route('admin.dashboard') }}" class="nav-link">
-                <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                <i class="bi bi-house-door-fill me-2"></i>  Accueil
             </a>
         </li>
         <li class="nav-item mb-2">
@@ -66,7 +67,7 @@
         </li>
         <li class="nav-item mb-2">
             <a href="{{ route('admin.etudiants') }}" class="nav-link">
-                <i class="bi bi-mortarboard-fill me-2"></i> Étudiants
+                <i class="bi bi-people-fill me-2"></i> Étudiants
             </a>
         </li>
         <li class="nav-item mb-2">
@@ -76,7 +77,7 @@
         </li>
         <li class="nav-item mt-4">
             <a href="{{ route('register') }}" class="btn btn-outline-light w-100 active">
-                <i class="bi bi-person-plus me-2"></i> Ajouter un rôle
+                <i class="bi bi-plus-circle me-2"></i> Ajouter un Membre
             </a>
         </li>
     </ul>
@@ -84,9 +85,8 @@
 
 <div class="main-content">
 
-
     <div class="header-section">
-        <h2 class="fw-bold text-primary">
+        <h2 class="fw-bold text-primary text-center">
             <i class="bi bi-person-plus-fill me-2"></i> Ajouter un utilisateur
         </h2>
     </div>
@@ -94,7 +94,12 @@
 
     <div class="row justify-content-center">
         <div class="col-md-6">
-
+            @if (session('role'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('role')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="card p-4">
 
                 <form method="POST" action="{{ route('register') }}">
@@ -140,5 +145,6 @@
 </div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 @endsection

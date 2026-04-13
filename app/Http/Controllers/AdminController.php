@@ -20,40 +20,52 @@ class AdminController extends Controller
         return view('admin.professeurs', compact('professeurs'));
     }
 
-    public function createProfesseur(){ return view('admin.createProfesseur'); }
 
-    public function storeProfesseur(Request $request){
-        User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'role'=>'professeur'
-        ]);
-        return redirect()->route('admin.professeurs')->with('professeur','Professeur ajouté avec succès!');
-    }
+
+
 
     public function etudiants(){
         $etudiants = User::where('role','etudiant')->get();
         return view('admin.etudiants', compact('etudiants'));
     }
 
-    public function createEtudiant(){ return view('admin.createEtudiant'); }
 
-    public function storeEtudiant(Request $request){
-        User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'role'=>'etudiant'
-        ]);
-        return redirect()->route('admin.etudiants')->with('etudiant','Etudiant ajouté avec succès!');
+    public function editEtudiant($id)
+    {
+        $etudiant =User::findOrFail($id);
+        return view('admin.editEtudiant', compact('etudiant'));
     }
+
+    public function updateEtudiant(Request $request, $id)
+    {
+        $etudiant = User::findOrFail($id);
+
+        $etudiant->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        return redirect()->route('admin.etudiants')->with('success', 'Étudiant modifié');
+    }
+
+
+    public function deleteEtudiant($id)
+    {
+        $etudiant = User::findOrFail($id);
+        $etudiant->delete();
+        return redirect()->back()->with('success', 'Étudiant supprimé avec succès');
+    }
+
+
+
+
+
+
 
     public function notes(){
         $notes = Note::with(['etudiant','professeur'])->get();
         return view('admin.notes', compact('notes'));
     }
-
 
 
     public function editProfesseur($id)
