@@ -32,13 +32,13 @@ class AdminController extends Controller
 
     public function editEtudiant($id)
     {
-        $etudiant = \App\Models\User::findOrFail($id);
+        $etudiant =User::findOrFail($id);
         return view('admin.editEtudiant', compact('etudiant'));
     }
 
     public function updateEtudiant(Request $request, $id)
     {
-        $etudiant = \App\Models\User::findOrFail($id);
+        $etudiant = User::findOrFail($id);
 
         $etudiant->update([
             'name' => $request->name,
@@ -55,8 +55,6 @@ class AdminController extends Controller
         $etudiant->delete();
         return redirect()->back()->with('success', 'Étudiant supprimé avec succès');
     }
-
-
 
 
 

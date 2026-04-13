@@ -3,7 +3,7 @@
 @section('content')
 <style>
 
-    .container {
+    .sidebar {
         position: fixed;
         top: 56px;
         left: 0;
@@ -14,34 +14,32 @@
         color: #fff;
     }
 
-    .container h2 {
+    .sidebar h2 {
         text-align: center;
         margin-bottom: 30px;
     }
 
-
-
-    .container ul li {
+    .sidebar ul li {
         list-style: none;
-        margin-top: 40px ;
+        margin-top: 20px ;
         cursor: pointer;
         transition: 0.3s;
     }
 
 
 
-    .container .nav-link i {
+    .sidebar .nav-link i {
         margin-right: 10px;
         font-size: 1.2rem;
     }
-    .container .nav-link {
+    .sidebar .nav-link {
         color: #fff;
-        font-weight: 500;
+        font-weight: bold;
         margin-bottom: 1rem;
         transition: 0.3s;
     }
 
-    .container .nav-link:hover {
+    .sidebar .nav-link:hover {
         background-color: #0d6efd;
         border-radius: 6px;
         color: #fff;
@@ -65,23 +63,27 @@
         transform: translateY(-5px);
     }
 
-    .bg-blue { background-color: #0d6efd; }
-    .bg-green { background-color: #198754; }
+    .bg-blue {
+         background-color: #0d6efd;
+    }
+    .bg-green {
+         background-color: #198754;
+     }
 
 </style>
 
-<div class="container">
+<div class="sidebar">
     <h2>Etudiant Panel</h2>
 
-    <ul >
-        <li class="nav-item mb-2">
-             <a class="nav-link" href="{{ route('etudiant.dashboard') }}"><i class="bi bi-house-fill me-2"></i>Accueil</a>
+    <ul class="nav flex-column">
+        <li class="">
+             <a  href="{{ route('etudiant.dashboard') }}" class="nav-link"><i class="bi bi-house-fill  "></i>Accueil</a>
         </li>
-        <li class="nav-item mb-2">
-             <a class="nav-link"  href="{{ route('etudiant.notes') }}"><i class="bi bi-journal-bookmark me-2"></i>Mes notes</a>
+        <li >
+             <a   href="{{ route('etudiant.notes') }}" class="nav-link"><i class="bi bi-journal-bookmark me-2"></i>Mes notes</a>
         </li>
-         <li  class="nav-item mb-2">
-            <a class="nav-link" href="{{ route('etudiant.profils') }}" ><i class="bi bi-person-circle me-2"></i> Mon Profil</a>
+         <li  >
+            <a  href="{{ route('etudiant.profils') }}" class="nav-link"><i class="bi bi-person-circle me-2"></i> Mon Profil</a>
         </li>
     </ul>
 </div>

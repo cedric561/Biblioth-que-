@@ -102,7 +102,6 @@
                 <i class="bi bi-person-badge me-2"></i> Liste des professeurs
             </h2>
 
-
         </div>
     </div>
 

@@ -23,7 +23,7 @@
 
         .container ul li {
             list-style: none;
-            margin-top: 40px ;
+            margin-top: 20px ;
             cursor: pointer;
             transition: 0.3s;
         }
@@ -38,11 +38,13 @@
             margin-right: 10px;
             font-size: 1.2rem;
         }
+
         .container .nav-link {
             color: #fff;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
+            font-weight: bold;
             transition: 0.3s;
         }
 
@@ -71,14 +73,14 @@
     <div class="container">
         <h2>Etudiant Panel</h2>
 
-        <ul >
+        <ul class="nav flex-column">
             <li >
                 <a class="nav-link" style="text-decoration:none; color:white" href="{{ route('etudiant.dashboard') }}"><i class="bi bi-house-fill me-2"></i>Accueil</a>
             </li>
             <li >
-                <a class="nav-link" style="text-decoration:none; color:white" href="{{ route('etudiant.notes') }}"><i class="bi bi-journal-bookmark me-2"></i>Mes notes</a>
+                <a class="nav-link active bg-primary rounded" style="text-decoration:none; color:white" href="{{ route('etudiant.notes') }}"><i class="bi bi-journal-bookmark me-2"></i>Mes notes</a>
             </li>
-            <li  class="nav-item mb-2">
+            <li  >
                 <a class="nav-link" href="{{ route('etudiant.profils') }}" class="nav-link text-white"><i class="bi bi-person-circle me-2"></i> Mon Profil</a>
             </li>
         </ul>
